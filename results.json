@@ -1,0 +1,413 @@
+[
+  {
+    "iterationIndex": 0,
+    "results": [
+      {
+        "test": {
+          "filename": "Untitled.yml"
+        },
+        "request": {
+          "method": "GET",
+          "url": "http://localhost:8080/api/specimens",
+          "headers": {
+            "content-type": null
+          }
+        },
+        "response": {
+          "status": 200,
+          "statusText": "",
+          "headers": {
+            "content-type": "application/json",
+            "transfer-encoding": "chunked",
+            "date": "Sun, 24 May 2026 08:22:54 GMT",
+            "keep-alive": "timeout=60",
+            "connection": "keep-alive"
+          },
+          "data": {
+            "message": "Especimenes recuperados con exito",
+            "status": 200,
+            "timestamp": "2026-05-24T02:22:54.10997489",
+            "path": "/api/specimens",
+            "data": [
+              {
+                "id": "40a17d4e-f8e3-4356-85ef-2e1177117fdf",
+                "name": "Blue Bokoblin",
+                "region": "Necluda",
+                "dangerLevel": 5,
+                "isFriendly": false
+              }
+            ],
+            "currentPage": 0,
+            "pageSize": 10,
+            "totalElements": 1,
+            "totalPages": 1,
+            "hasNext": false
+          },
+          "url": "http://localhost/api/specimens",
+          "responseTime": 13,
+          "duration": 13,
+          "size": 338
+        },
+        "error": null,
+        "status": "pass",
+        "assertionResults": [],
+        "testResults": [],
+        "preRequestTestResults": [],
+        "postResponseTestResults": [],
+        "shouldStopRunnerExecution": false,
+        "runDuration": 0.032226015,
+        "name": "Untitled",
+        "path": "Untitled.yml",
+        "iterationIndex": 0
+      },
+      {
+        "test": {
+          "filename": "Post.yml"
+        },
+        "request": {
+          "method": "POST",
+          "url": "http://localhost:8080/api/specimens",
+          "headers": {
+            "content-type": "application/json"
+          },
+          "data": "{\n  \"name\": \"Bokoblin\",\n  \"region\": \"Faron\",\n  \"dangerLevel\": 3,\n  \"isFriendly\": false\n}"
+        },
+        "response": {
+          "status": 201,
+          "statusText": "",
+          "headers": {
+            "content-type": "application/json",
+            "transfer-encoding": "chunked",
+            "date": "Sun, 24 May 2026 08:22:54 GMT",
+            "keep-alive": "timeout=60",
+            "connection": "keep-alive"
+          },
+          "data": {
+            "message": "Especimen creado",
+            "status": 201,
+            "timestamp": "2026-05-24T02:22:54.1298829",
+            "path": "/api/specimens",
+            "data": {
+              "id": "1196b4c5-bc41-46cf-b907-b588d99c1232",
+              "name": "Bokoblin",
+              "region": "Faron",
+              "dangerLevel": 3,
+              "isFriendly": false
+            }
+          },
+          "url": "http://localhost/api/specimens",
+          "responseTime": 11,
+          "duration": 11,
+          "size": 232
+        },
+        "error": null,
+        "status": "pass",
+        "assertionResults": [],
+        "testResults": [],
+        "preRequestTestResults": [],
+        "postResponseTestResults": [],
+        "shouldStopRunnerExecution": false,
+        "runDuration": 0.013764634,
+        "name": "Post",
+        "path": "Post.yml",
+        "iterationIndex": 0
+      },
+      {
+        "test": {
+          "filename": "GetSpecimens.yml"
+        },
+        "request": {
+          "method": "GET",
+          "url": "http://localhost:8080/api/specimens",
+          "headers": {
+            "content-type": null
+          }
+        },
+        "response": {
+          "status": 200,
+          "statusText": "",
+          "headers": {
+            "content-type": "application/json",
+            "transfer-encoding": "chunked",
+            "date": "Sun, 24 May 2026 08:22:54 GMT",
+            "keep-alive": "timeout=60",
+            "connection": "keep-alive"
+          },
+          "data": {
+            "message": "Especimenes recuperados con exito",
+            "status": 200,
+            "timestamp": "2026-05-24T02:22:54.13630788",
+            "path": "/api/specimens",
+            "data": [
+              {
+                "id": "1196b4c5-bc41-46cf-b907-b588d99c1232",
+                "name": "Bokoblin",
+                "region": "Faron",
+                "dangerLevel": 3,
+                "isFriendly": false
+              },
+              {
+                "id": "40a17d4e-f8e3-4356-85ef-2e1177117fdf",
+                "name": "Blue Bokoblin",
+                "region": "Necluda",
+                "dangerLevel": 5,
+                "isFriendly": false
+              }
+            ],
+            "currentPage": 0,
+            "pageSize": 10,
+            "totalElements": 2,
+            "totalPages": 1,
+            "hasNext": false
+          },
+          "url": "http://localhost/api/specimens",
+          "responseTime": 5,
+          "duration": 5,
+          "size": 454
+        },
+        "error": null,
+        "status": "pass",
+        "assertionResults": [],
+        "testResults": [],
+        "preRequestTestResults": [],
+        "postResponseTestResults": [],
+        "shouldStopRunnerExecution": false,
+        "runDuration": 0.006269521,
+        "name": "GetSpecimens",
+        "path": "GetSpecimens.yml",
+        "iterationIndex": 0
+      },
+      {
+        "test": {
+          "filename": "GetPaginacion.yml"
+        },
+        "request": {
+          "method": "GET",
+          "url": "http://localhost:8080/api/specimens?page%20=0&size=5&sortBy=id&sortOrder=asc",
+          "headers": {
+            "content-type": null
+          }
+        },
+        "response": {
+          "status": 200,
+          "statusText": "",
+          "headers": {
+            "content-type": "application/json",
+            "transfer-encoding": "chunked",
+            "date": "Sun, 24 May 2026 08:22:54 GMT",
+            "keep-alive": "timeout=60",
+            "connection": "keep-alive"
+          },
+          "data": {
+            "message": "Especimenes recuperados con exito",
+            "status": 200,
+            "timestamp": "2026-05-24T02:22:54.142190536",
+            "path": "/api/specimens",
+            "data": [
+              {
+                "id": "1196b4c5-bc41-46cf-b907-b588d99c1232",
+                "name": "Bokoblin",
+                "region": "Faron",
+                "dangerLevel": 3,
+                "isFriendly": false
+              },
+              {
+                "id": "40a17d4e-f8e3-4356-85ef-2e1177117fdf",
+                "name": "Blue Bokoblin",
+                "region": "Necluda",
+                "dangerLevel": 5,
+                "isFriendly": false
+              }
+            ],
+            "currentPage": 0,
+            "pageSize": 5,
+            "totalElements": 2,
+            "totalPages": 1,
+            "hasNext": false
+          },
+          "url": "http://localhost/api/specimens?page%20=0&size=5&sortBy=id&sortOrder=asc",
+          "responseTime": 5,
+          "duration": 5,
+          "size": 454
+        },
+        "error": null,
+        "status": "pass",
+        "assertionResults": [],
+        "testResults": [],
+        "preRequestTestResults": [],
+        "postResponseTestResults": [],
+        "shouldStopRunnerExecution": false,
+        "runDuration": 0.005795594,
+        "name": "GetPaginacion",
+        "path": "GetPaginacion.yml",
+        "iterationIndex": 0
+      },
+      {
+        "test": {
+          "filename": "GetbyId.yml"
+        },
+        "request": {
+          "method": "GET",
+          "url": "http://localhost:8080/api/specimens/40a17d4e-f8e3-4356-85ef-2e1177117fdf",
+          "headers": {
+            "content-type": null
+          }
+        },
+        "response": {
+          "status": 200,
+          "statusText": "",
+          "headers": {
+            "content-type": "application/json",
+            "transfer-encoding": "chunked",
+            "date": "Sun, 24 May 2026 08:22:54 GMT",
+            "keep-alive": "timeout=60",
+            "connection": "keep-alive"
+          },
+          "data": {
+            "message": "especimen recuperado con exito",
+            "status": 200,
+            "timestamp": "2026-05-24T02:22:54.147698434",
+            "path": "/api/specimens",
+            "data": {
+              "id": "40a17d4e-f8e3-4356-85ef-2e1177117fdf",
+              "name": "Blue Bokoblin",
+              "region": "Necluda",
+              "dangerLevel": 5,
+              "isFriendly": false
+            }
+          },
+          "url": "http://localhost/api/specimens/40a17d4e-f8e3-4356-85ef-2e1177117fdf",
+          "responseTime": 5,
+          "duration": 5,
+          "size": 255
+        },
+        "error": null,
+        "status": "pass",
+        "assertionResults": [],
+        "testResults": [],
+        "preRequestTestResults": [],
+        "postResponseTestResults": [],
+        "shouldStopRunnerExecution": false,
+        "runDuration": 0.005600207,
+        "name": "GetbyId",
+        "path": "GetbyId.yml",
+        "iterationIndex": 0
+      },
+      {
+        "test": {
+          "filename": "Put.yml"
+        },
+        "request": {
+          "method": "PUT",
+          "url": "http://localhost:8080/api/specimens/40a17d4e-f8e3-4356-85ef-2e1177117fdf",
+          "headers": {
+            "content-type": "application/json"
+          },
+          "data": "{\n  \"name\": \"Blue Bokoblin\",\n  \"region\": \"Necluda\",\n  \"dangerLevel\": 5,\n  \"isFriendly\": false\n}"
+        },
+        "response": {
+          "status": 200,
+          "statusText": "",
+          "headers": {
+            "content-type": "application/json",
+            "transfer-encoding": "chunked",
+            "date": "Sun, 24 May 2026 08:22:54 GMT",
+            "keep-alive": "timeout=60",
+            "connection": "keep-alive"
+          },
+          "data": {
+            "message": "especimen actualizado",
+            "status": 200,
+            "timestamp": "2026-05-24T02:22:54.154981922",
+            "path": "/api/specimens",
+            "data": {
+              "id": "40a17d4e-f8e3-4356-85ef-2e1177117fdf",
+              "name": "Blue Bokoblin",
+              "region": "Necluda",
+              "dangerLevel": 5,
+              "isFriendly": false
+            }
+          },
+          "url": "http://localhost/api/specimens/40a17d4e-f8e3-4356-85ef-2e1177117fdf",
+          "responseTime": 6,
+          "duration": 6,
+          "size": 246
+        },
+        "error": null,
+        "status": "pass",
+        "assertionResults": [],
+        "testResults": [],
+        "preRequestTestResults": [],
+        "postResponseTestResults": [],
+        "shouldStopRunnerExecution": false,
+        "runDuration": 0.006989074,
+        "name": "Put",
+        "path": "Put.yml",
+        "iterationIndex": 0
+      },
+      {
+        "test": {
+          "filename": "getUnknown.yml"
+        },
+        "request": {
+          "method": "GET",
+          "url": "http://localhost:8080/api/specimens/00000000-0000-0000-0000-000000000000",
+          "headers": {
+            "content-type": null
+          }
+        },
+        "response": {
+          "status": 404,
+          "statusText": "",
+          "headers": {
+            "content-type": "application/json",
+            "transfer-encoding": "chunked",
+            "date": "Sun, 24 May 2026 08:22:54 GMT",
+            "keep-alive": "timeout=60",
+            "connection": "keep-alive"
+          },
+          "data": {
+            "status": 404,
+            "message": "Specimen not found in Sheikah Slate records",
+            "timestamp": "2026-05-24T02:22:54.160071429",
+            "path": "/api/specimens/00000000-0000-0000-0000-000000000000"
+          },
+          "url": "http://localhost/api/specimens/00000000-0000-0000-0000-000000000000",
+          "responseTime": 4,
+          "duration": 4,
+          "size": 175
+        },
+        "error": null,
+        "status": "pass",
+        "assertionResults": [],
+        "testResults": [],
+        "preRequestTestResults": [],
+        "postResponseTestResults": [],
+        "shouldStopRunnerExecution": false,
+        "runDuration": 0.00592202,
+        "name": "getUnknown",
+        "path": "getUnknown.yml",
+        "iterationIndex": 0
+      }
+    ],
+    "summary": {
+      "totalRequests": 7,
+      "passedRequests": 7,
+      "failedRequests": 0,
+      "errorRequests": 0,
+      "skippedRequests": 0,
+      "totalAssertions": 0,
+      "passedAssertions": 0,
+      "failedAssertions": 0,
+      "totalTests": 0,
+      "passedTests": 0,
+      "failedTests": 0,
+      "totalPreRequestTests": 0,
+      "passedPreRequestTests": 0,
+      "failedPreRequestTests": 0,
+      "totalPostResponseTests": 0,
+      "passedPostResponseTests": 0,
+      "failedPostResponseTests": 0
+    }
+  }
+]
