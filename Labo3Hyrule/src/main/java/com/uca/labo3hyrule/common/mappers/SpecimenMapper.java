@@ -4,6 +4,7 @@ import com.uca.labo3hyrule.domain.dto.request.CreateSpecimenRequest;
 import com.uca.labo3hyrule.domain.dto.request.UpdateSpecimenRequest;
 import com.uca.labo3hyrule.domain.dto.response.SpecimenResponse;
 import com.uca.labo3hyrule.domain.entities.Specimen;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Component;
 
 import java.util.UUID;
@@ -40,6 +41,7 @@ public class SpecimenMapper {
                 .build();
     }
 
-    // TODO: El estudiante deberá agregar aquí el método para mapear un Page<Specimen> a Page<SpecimenResponse>
-    // pista: utilizando .map(this::toDto)
+    public Page<SpecimenResponse> toPageDto(Page<Specimen> page) {
+        return page.map(this::toDto);
+    }
 }
