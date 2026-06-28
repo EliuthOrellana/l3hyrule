@@ -1,0 +1,93 @@
+name: CI - Build, Test and Docker Smoke Test
+
+on:
+  pull_request:
+    branches:
+      - main
+      - develop
+
+  push:
+    branches:
+      - main
+      - develop
+      - feature/**
+
+jobs:
+  build-test-and-smoke:
+    name: Build, Unit Tests and Smoke Test
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: Labo3Hyrule
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Java 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+          cache: maven
+
+      - name: Give permission to Maven Wrapper
+        run: chmod +x mvnw
+
+      - name: Run unit tests
+        run: ./mvnw clean test
+
+      - name: Create CI environment file
+        run: |
+          cat > .env <<EOF
+          SPRING_APPLICATION_NAME=Labo3Hyrule
+          SERVER_PORT=8080
+
+          HYRULE_DB_HOST=db
+          HYRULE_DB_PORT=5432
+          HYRULE_DB_NAME=labo3hyrule_db
+          HYRULE_DB_USER=hyrule_user
+          HYRULE_DB_PASSWORD=hyrule_password
+
+          SPRING_JPA_SHOW_SQL=false
+          SPRING_JPA_HIBERNATE_DDL_AUTO=update
+          EOF
+
+      - name: Build and start containers
+        run: docker compose up --build -d
+
+      - name: Wait for API startup
+        run: |
+          for i in {1..30}; do
+            if docker compose logs api | grep -q "Started Labo3HyruleApplication"; then
+              echo "API started successfully"
+              exit 0
+            fi
+
+            echo "Waiting for API startup..."
+            sleep 5
+          done
+
+          echo "API did not start in time"
+          docker compose logs api
+          exit 1
+
+      - name: Smoke test - create specimen
+        run: |
+          curl -f -X POST http://localhost:8080/api/specimens \
+            -H "Content-Type: application/json" \
+            -d '{
+              "name": "Lynel",
+              "region": "Hebra",
+              "dangerLevel": 10,
+              "isFriendly": false
+            }'
+
+      - name: Smoke test - get specimens
+        run: |
+          curl -f http://localhost:8080/api/specimens
+
+      - name: Stop containers
+        if: always()
+        run: docker compose down -v
