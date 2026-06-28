@@ -1,0 +1,51 @@
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: labo3hyrule-db
+    restart: always
+    environment:
+      POSTGRES_DB: ${HYRULE_DB_NAME}
+      POSTGRES_USER: ${HYRULE_DB_USER}
+      POSTGRES_PASSWORD: ${HYRULE_DB_PASSWORD}
+    ports:
+      - "5434:5432"
+    volumes:
+      - labo3hyrule-db-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${HYRULE_DB_USER} -d ${HYRULE_DB_NAME}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - labo3hyrule-network
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: labo3hyrule-api
+    restart: on-failure
+    environment:
+      SPRING_APPLICATION_NAME: ${SPRING_APPLICATION_NAME}
+      SERVER_PORT: ${SERVER_PORT}
+
+      DB_URL: jdbc:postgresql://${HYRULE_DB_HOST}:${HYRULE_DB_PORT}/${HYRULE_DB_NAME}
+      DB_USER: ${HYRULE_DB_USER}
+      DB_PASSWORD: ${HYRULE_DB_PASSWORD}
+
+      SPRING_JPA_SHOW_SQL: ${SPRING_JPA_SHOW_SQL}
+      SPRING_JPA_HIBERNATE_DDL_AUTO: ${SPRING_JPA_HIBERNATE_DDL_AUTO}
+    ports:
+      - "${SERVER_PORT}:8080"
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - labo3hyrule-network
+
+volumes:
+  labo3hyrule-db-data:
+
+networks:
+  labo3hyrule-network:
+    driver: bridge

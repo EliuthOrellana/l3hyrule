@@ -1,16 +1,20 @@
 spring:
   application:
-    name: Labo3Hyrule
+    name: ${SPRING_APPLICATION_NAME:Labo3Hyrule}
 
-  Datasource:
+  datasource:
     url: ${DB_URL}
     username: ${DB_USER}
     password: ${DB_PASSWORD}
+    driver-class-name: org.postgresql.Driver
 
   jpa:
-    show-sql: false
+    show-sql: ${SPRING_JPA_SHOW_SQL:false}
     hibernate:
-      ddl-auto: update
+      ddl-auto: ${SPRING_JPA_HIBERNATE_DDL_AUTO:update}
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
+
+server:
+  port: ${SERVER_PORT:8080}
